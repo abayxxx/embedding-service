@@ -1,0 +1,22 @@
+services:
+  embedding-service:
+    build: .
+    container_name: embedding-service
+    ports:
+      - "8081:8081"
+    environment:
+      APP_ENV: production
+      EMBEDDING_MODEL_NAME: BAAI/bge-m3
+      EMBEDDING_NORMALIZE: "true"
+      EMBEDDING_DEVICE: cpu
+      EMBEDDING_MAX_BATCH_SIZE: 64
+      EMBEDDING_MAX_TEXT_LENGTH: 8000
+      EMBEDDING_NUM_THREADS: 0
+      # API_KEY: change-me-internal-key
+    # Persist the Hugging Face model cache so restarts don't re-download ~2GB.
+    volumes:
+      - hf-cache:/home/appuser/.cache/huggingface
+    restart: unless-stopped
+
+volumes:
+  hf-cache:
