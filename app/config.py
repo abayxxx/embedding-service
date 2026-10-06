@@ -17,12 +17,6 @@ class Settings(BaseSettings):
     # requests run concurrently. 0 / None means "let torch decide".
     embedding_num_threads: int = 0
 
-    # Max inference calls allowed to run at once. torch already uses every core
-    # per encode, so the safe default is 1 (serialize) to avoid core
-    # oversubscription/thrashing under concurrent load. Raise this only together
-    # with a matching EMBEDDING_NUM_THREADS (cores / concurrency).
-    embedding_max_concurrency: int = 1
-
     # Optional internal API key. Empty means auth is disabled.
     api_key: str | None = None
 
