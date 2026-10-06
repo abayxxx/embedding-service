@@ -8,6 +8,8 @@ class Settings(BaseSettings):
     app_port: int = 8081
 
     embedding_model_name: str = "BAAI/bge-m3"
+    # Hugging Face revision (commit hash) to load; empty = latest.
+    embedding_model_revision: str | None = None
     embedding_normalize: bool = True
     embedding_device: str = "cpu"
     embedding_max_batch_size: int = 64

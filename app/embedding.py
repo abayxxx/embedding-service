@@ -88,7 +88,11 @@ class EmbeddingService:
             self.model_name,
             self.device,
         )
-        model = SentenceTransformer(self.model_name, device=self.device)
+        model = SentenceTransformer(
+            self.model_name,
+            device=self.device,
+            revision=settings.embedding_model_revision or None,
+        )
         self.dimension = model.get_sentence_embedding_dimension()
         self.max_seq_length = int(model.max_seq_length)
 
